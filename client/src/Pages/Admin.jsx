@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { get, put, del } from '../services/ApiEndpoint';
+import { get, del } from '../services/ApiEndpoint';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -19,7 +19,7 @@ export default function AdminPanel() {
       return;
     }
     fetchAll();
-  }, [currentUser]);
+  }, [currentUser,navigate]);
 
   const fetchAll = async () => {
     try {
