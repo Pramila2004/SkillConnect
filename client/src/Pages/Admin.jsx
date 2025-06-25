@@ -23,9 +23,9 @@ export default function AdminPanel() {
 
   const fetchAll = async () => {
     try {
-      const u = await get('/admin/users');
-      const r = await get('/admin/requests');
-      const s = await get('/admin/stats');
+      const u = await get('/api/admin/users');
+      const r = await get('/api/admin/requests');
+      const s = await get('/api/admin/stats');
       setUsers(u.data);
       setRequests(r.data);
       setStats(s.data);
@@ -36,13 +36,13 @@ export default function AdminPanel() {
   };
 
   const handleEdit = (id) => {
-  navigate(`/admin/edit/${id}`);
+  navigate(`/api/admin/edit/${id}`);
 };
 
 
   const handleDelete = async (id) => {
     try {
-      await del(`/admin/user/${id}`);
+      await del(`/api/admin/user/${id}`);
       toast.success("User deleted");
       fetchAll();
     } catch {
@@ -52,7 +52,7 @@ export default function AdminPanel() {
 
   const handleSearch = async () => {
     try {
-      const res = await get(`/admin/users/search?q=${search}`);
+      const res = await get(`/api/admin/users/search?q=${search}`);
       setUsers(res.data);
     } catch {
       toast.error("Search failed");

@@ -9,13 +9,13 @@ export default function AdminEditUser() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    get(`/admin/user/${id}`).then((res) => setUser(res.data)).catch(() => toast.error('Failed to load user'));
+    get(`/api/admin/user/${id}`).then((res) => setUser(res.data)).catch(() => toast.error('Failed to load user'));
   }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await put(`/admin/user/${id}`, user);
+      await put(`/api/admin/user/${id}`, user);
       toast.success('User updated');
       navigate('/admin'); // change this to actual admin dashboard path
     } catch {
