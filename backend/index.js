@@ -23,11 +23,18 @@ const PORT = process.env.PORT || 4000;
 const server = http.createServer(app);
 
 // ✅ Initialize Socket.IO
+// const io = new Server(server, {
+//   cors: {
+//     origin: process.env.NODE_ENV === 'production'
+//       ? 'https://your-frontend-domain.com'
+//       : 'http://localhost:3000',
+//     credentials: true,
+//   },
+// });
+
 const io = new Server(server, {
   cors: {
-    origin: process.env.NODE_ENV === 'production'
-      ? 'https://your-frontend-domain.com'
-      : 'http://localhost:3000',
+    origin:'http://localhost:3000',
     credentials: true,
   },
 });
@@ -56,10 +63,14 @@ DBConnection();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+// app.use(cors({
+//   origin: process.env.NODE_ENV === 'production'
+//     ? 'https://your-frontend.com'
+//     : 'http://localhost:3000',
+//   credentials: true,
+// }));
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production'
-    ? 'https://your-frontend.com'
-    : 'http://localhost:3000',
+  origin: 'http://localhost:3000',
   credentials: true,
 }));
 
