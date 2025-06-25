@@ -17,7 +17,7 @@ export default function ChatRoom() {
 
     useEffect(() => {
         if (!socketRef.current) {
-            socketRef.current = io(process.env.REACT_APP_SOCKET_URL || 'http://localhost:4000', {
+            socketRef.current = io('https://skillconnect-sxnq.onrender.com' || 'http://localhost:4000', {
                 withCredentials: true,
             });
         }
