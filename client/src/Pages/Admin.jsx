@@ -36,7 +36,7 @@ export default function AdminPanel() {
   };
 
   const handleEdit = (id) => {
-  navigate(`/api/admin/edit/${id}`);
+  navigate(`/admin/edit/${id}`);
 };
 
 
