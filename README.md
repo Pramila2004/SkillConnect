@@ -23,5 +23,26 @@
 - **Backend:** Node.js, Express.js, MongoDB  
 - **Real-Time:** Socket.IO for live chat  
 - **Authentication:** JWT & Cookies  
+## 🚀 Getting Started
+
+### 🔧 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Pramila2004/SkillConnect.git
+   cd SkillConnect
+
+2. **Install dependencies**
+   ```bash
+   npm install
+
+3. **Setup .env file with the following variables:**
+   ```bash
+    MONGO_URI=your_mongodb_uri
+    JWT_SECRET=your_secret_key
+   
+1. **Run the development server**
+   ```bash
+   npm run dev
 
 
