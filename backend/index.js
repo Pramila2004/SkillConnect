@@ -47,13 +47,10 @@ const allowedOrigins = [
 ];
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('CORS not allowed'));
-    }
+    if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+    else callback(new Error('CORS not allowed'));
   },
-  credentials: true,
+  credentials: true
 }));
 
 // Apply rate limiter only on login route
@@ -75,13 +72,15 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+
 // Socket.IO
 const io = new Server(server, {
   cors: {
     origin: allowedOrigins,
-    credentials: true,
-  },
+    credentials: true
+  }
 });
+
 
 io.on('connection', (socket) => {
   socket.on('joinRoom', (roomId) => {
