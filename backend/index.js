@@ -52,7 +52,7 @@ const io = new Server(server, {
 
 // ✅ Global Socket.IO logic
 io.on('connection', (socket) => {
-  console.log(`📡 User connected: ${socket.id}`);
+  // console.log(`📡 User connected: ${socket.id}`);
 
   socket.on('joinRoom', (roomId) => {
     socket.join(roomId);
@@ -64,13 +64,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    console.log(`🔌 User disconnected: ${socket.id}`);
+    // console.log(`🔌 User disconnected: ${socket.id}`);
   });
 });
 
 // Database connection
 DBConnection();
-app.use('/api/auth/login', loginLimiter);
+
 
 // Middleware
 app.use(express.json());
@@ -86,6 +86,7 @@ app.use(cors({
   credentials: true,
 }));
 
+app.use('/api/auth/login', loginLimiter);
 
 // API Routes
 app.use('/api/auth', authRoutes);
