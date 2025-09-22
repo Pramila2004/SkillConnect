@@ -13,6 +13,7 @@ import Contact from './Pages/Contact';
 import ChatRoom from './Pages/ChatRoom';
 import Admin from'./Pages/Admin'
 import AdminEditUser from './Pages/AdminEditUser'
+import RateLimit from './Pages/RateLimit';
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
           <Route path='/admin' element={<Admin />} />
           <Route path="/chat/:requestId" element={<ChatRoom />} />
           <Route path="/admin/edit/:id" element={<AdminEditUser />} />
-
+          <Route path="/rate-limit" element={<RateLimit/>}/>
         </Routes>
       </BrowserRouter>
     </div>

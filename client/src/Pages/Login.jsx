@@ -24,10 +24,13 @@ export default function Login() {
         navigate('/');
       }
     } catch (error) {
-      toast.error(
-        error.response?.data?.message || 'An error occurred during login'
-      );
-      console.log(error);
+      if (error.response?.status === 429) {
+        // Redirect to RateLimit page
+        navigate('/rate-limit');
+      } else {
+        toast.error(error.response?.data?.message || 'An error occurred during login');
+      }
+      console.error('Login error:', error);
     }
   };
 

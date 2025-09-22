@@ -12,6 +12,8 @@ import http from 'http'; // ✅ Required for socket
 import { Server } from 'socket.io'; // ✅ Socket.IO server
 import path from 'path'; // ✅ for __dirname fix in ES modules
 import { fileURLToPath } from 'url'; // ✅
+import rateLimit from 'express-rate-limit';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,9 +34,18 @@ const server = http.createServer(app);
 //   },
 // });
 
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5, // max 5 login attempts per 15 minutes
+  message:{
+    status:429,
+    message:"Too many login attempts, please try again after 15 minutes.",
+  } 
+});
+
 const io = new Server(server, {
   cors: {
-    origin:'https://skillconnect-frontend.onrender.com',
+    origin:'http://localhost:3000',
     credentials: true,
   },
 });
@@ -59,6 +70,7 @@ io.on('connection', (socket) => {
 
 // Database connection
 DBConnection();
+app.use('/api/auth/login', loginLimiter);
 
 // Middleware
 app.use(express.json());
@@ -70,7 +82,7 @@ app.use(cookieParser());
 //   credentials: true,
 // }));
 app.use(cors({
-  origin: 'https://skillconnect-frontend.onrender.com',
+  origin: 'http://localhost:3000',
   credentials: true,
 }));
 
